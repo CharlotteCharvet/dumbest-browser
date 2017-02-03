@@ -1,10 +1,29 @@
 require 'net/http'
 require 'nokogiri'
 
-require_relative 'util'
 
-class Browser
+
+require_relative 'page'
+
+class Browser 
   def run!
+    puts "what url do you want to scan ?"
+    url = gets.chomp
+    page = Page.new(url)
+
+    page.url(url)
+
+
+    page.fetch!
+
+    puts "What kind of title do you want to store ?"
+    title = gets.chomp
+    page.title(title)
+
+    puts "Here all the links of your website :"
+    page.links
+
+
     # Run the browser
     # Display a prompt for a user
     # Parse their input
